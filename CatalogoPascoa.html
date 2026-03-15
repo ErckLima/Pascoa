@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐣 Catálogo de Ovos de Páscoa - Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #fef3c7, #fed7aa, #fef08a);
+            min-height: 100vh;
+            color: #78350f;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(to right, #b45309, #a16207, #ca8a04);
+            color: white;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fef3c7;
+        }
+
+        .header-emoji {
+            font-size: 3.5rem;
+            margin-left: 1rem;
+            display: inline-block;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .cart-desktop {
+            display: none !important;
+        }
+
+        /* Título da Seção */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #78350f;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .title-underline {
+            height: 4px;
+            width: 130px;
+            background: linear-gradient(to right, #b45309, #ca8a04);
+            border-radius: 9999px;
+            margin-bottom: 2rem;
+        }
+
+        /* Grid de Produtos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Card do Produto */
+        .product-card {
+            background: white;
+            border: 3px solid #fcd34d;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: #f59e0b;
+            transform: translateY(-8px);
+        }
+
+        /* Carrossel de Imagens */
+        .carousel-container {
+            position: relative;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #fef3c7, #fed7aa, #fed7aa);
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            color: #78350f;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .carousel-container:hover .carousel-nav-btn {
+            opacity: 1;
+        }
+
+        .carousel-nav-btn:hover {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-nav-btn.prev {
+            left: 8px;
+        }
+
+        .carousel-nav-btn.next {
+            right: 8px;
+        }
+
+        /* Indicadores */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .indicator.active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Conteúdo do Card */
+        .product-content {
+            padding: 1.25rem;
+            background: linear-gradient(to bottom, white, #fef3c7);
+            border-top: 2px solid #fcd34d;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #78350f;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: #b45309;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-price {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-label {
+            font-size: 0.75rem;
+            color: #a16207;
+            font-weight: 600;
+        }
+
+        .price-value {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: #78350f;
+        }
+
+        .btn-add {
+            background: linear-gradient(to right, #b45309, #ca8a04);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-add:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Carrinho Desktop */
+        .cart-desktop {
+            position: sticky;
+            top: 1rem;
+            background: linear-gradient(to bottom, #fef3c7, #fed7aa);
+            border: 3px solid #fcd34d;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .cart-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cart-header h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #78350f;
+        }
+
+        .cart-items {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+            space: 0.75rem;
+        }
+
+        .cart-item {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            border: 2px solid #fcd34d;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .cart-item:hover {
+            border-color: #f59e0b;
+        }
+
+        .cart-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-name {
+            font-weight: 900;
+            color: #78350f;
+            font-size: 0.9rem;
+        }
+
+        .btn-remove {
+            background: none;
+            border: none;
+            color: #dc2626;
+            cursor: pointer;
+            font-weight: 900;
+            font-size: 1rem;
+        }
+
+        .cart-item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item-price {
+            font-weight: 900;
+            color: #78350f;
+            font-size: 0.85rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .qty-btn {
+            background: #fcd34d;
+            border: none;
+            color: #78350f;
+            width: 24px;
+            height: 24px;
+            border-radius: 0.25rem;
+            font-size: 0.85rem;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .qty-btn:hover {
+            background: #f59e0b;
+        }
+
+        .qty-display {
+            width: 24px;
+            text-align: center;
+            font-weight: 900;
+            color: #78350f;
+            font-size: 0.85rem;
+        }
+
+        .cart-empty {
+            text-align: center;
+            color: #b45309;
+            padding: 3rem 0;
+            font-weight: 600;
+        }
+
+        .cart-total {
+            background: linear-gradient(to right, #fef3c7, #fed7aa);
+            border: 2px solid #fcd34d;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .total-label {
+            color: #78350f;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .total-value {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: #78350f;
+            text-align: center;
+        }
+
+        .cart-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(to right, #16a34a, #15803d);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-whatsapp:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-clear {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-clear:hover {
+            background: #991b1b;
+        }
+
+        /* Carrinho Flutuante */
+        .floating-cart-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .floating-cart-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fef3c7, #fed7aa);
+            border: 4px solid #fcd34d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .floating-cart-btn:hover .floating-cart-circle {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #dc2626;
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1rem;
+            border: 2px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Modal do Carrinho Flutuante */
+        .floating-cart-modal {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+            width: 384px;
+            max-height: 600px;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border: 3px solid #fcd34d;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            background: linear-gradient(to right, #b45309, #ca8a04);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 900;
+        }
+
+        .modal-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .modal-footer {
+            border-top: 2px solid #fcd34d;
+            padding: 1rem;
+            background: linear-gradient(to bottom, white, #fef3c7);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .btn-close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-weight: 900;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #b45309, #a16207, #ca8a04);
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        footer h3 {
+            font-size: 1.25rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fef3c7;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fef3c7;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #fcd34d;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-cart-modal {
+                width: calc(100% - 2rem);
+                right: 1rem;
+                left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <div>
+                <h1>🐣 Ovos de Páscoa</h1>
+                <p>Catálogo premium de chocolate artesanal</p>
+            </div>
+            <div class="header-emoji">🍫</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-grid">
+            <!-- Produtos -->
+            <div>
+                <h2 class="section-title">Nossos Ovos Premium</h2>
+                <div class="title-underline"></div>
+                <div class="products-grid" id="productsGrid"></div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h3>🐣 Catálogo de Ovos de Páscoa 🍫</h3>
+        <p>Feito com ❤️ para a sua Páscoa especial | Chocolate Premium Artesanal</p>
+    </footer>
+
+    <!-- Carrinho Flutuante -->
+    <button class="floating-cart-btn" id="floatingCartBtn" onclick="toggleFloatingCart()">
+        <div class="floating-cart-circle">
+            🛒
+            <div class="cart-badge" id="cartBadge" style="display: none;">0</div>
+        </div>
+    </button>
+
+    <!-- Modal do Carrinho Flutuante -->
+    <div id="floatingCartModal" class="floating-cart-modal" style="display: none;">
+        <div class="modal-header">
+            <span>🛒 Meu Carrinho</span>
+            <button class="btn-close-modal" onclick="toggleFloatingCart()">✕</button>
+        </div>
+        <div id="cartItemsModal" class="modal-content">
+            <div class="cart-empty">Seu carrinho está vazio 🛒</div>
+        </div>
+        <div class="modal-footer">
+            <div id="cartTotalModal" class="cart-total" style="display: none;">
+                <div class="total-label">Total:</div>
+                <div class="total-value" id="cartTotalValueModal">R$ 0,00</div>
+            </div>
+            <button class="btn-whatsapp" onclick="sendToWhatsApp()">
+                📱 Enviar
+            </button>
+            <button class="btn-clear" onclick="clearCart()">
+                🗑️ Limpar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ⚠️ IMPORTANTE: Altere este número para o seu número do WhatsApp
+        // Formato: 55 + DDD (2 dígitos) + Número (8 ou 9 dígitos)
+        // Exemplo: 5585987654321 para Fortaleza
+        const WHATSAPP_NUMBER = "5531986128487"; // ALTERE AQUI!
+
+        // Produtos
+        const products = [
+            {
+                id: 1,
+                name: "Ovo de Chocolate Belga",
+                description: "Chocolate premium com recheio de avelã",
+                price: 45.00,
+                images: [
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-chocolate-belgian-nzjnXh8zRdq3cYCfCJePbw.webp",
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-belgian-angle1-ZGru2gFxSkHxur3ZMLLYqN.webp",
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-belgian-angle2-5XW2eRZH8saBjv24zzCfnU.webp"
+                ]
+            },
+            {
+                id: 2,
+                name: "Ovo Decorado Artesanal",
+                description: "Ovo pintado à mão com detalhes em ouro",
+                price: 65.00,
+                images: [
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-decorated-artisan-CyRDyWzPWH8CMkd5R46aQP.webp",
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-artisan-angle1-6LNFVsBbL27fDepyp2ZurY.webp",
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-artisan-angle2-TEeFNeTbZt4GrupaZhAstv.webp"
+                ]
+            },
+            {
+                id: 3,
+                name: "Ovo de Colher Gourmet",
+                description: "Chocolate derretido com frutas vermelhas",
+                price: 55.00,
+                images: [
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-spoon-gourmet-VE8g8ugMbBRfBhiusBbDMF.webp",
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-gourmet-angle1-JveKoDsbuh2ET4iPcrYdbi.webp",
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-gourmet-angle2-4Z56nEGfspEi9WUH4VEnNz.webp"
+                ]
+            },
+            {
+                id: 4,
+                name: "Ovo Recheado Premium",
+                description: "Chocolate branco com brigadeiro gourmet",
+                price: 50.00,
+                images: [
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-filled-premium-aguoWhvNL5XUNwTCgAtLr.webp",
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-premium-angle1-BuoebQfhLGTWozhGsFuaPs.webp",
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-premium-angle2-MxrnnYTzCxxpgEjTNMzfbd.webp"
+                ]
+            },
+            {
+                id: 5,
+                name: "Ovo Surpresa Infantil",
+                description: "Chocolate ao leite com brinquedo surpresa",
+                price: 35.00,
+                images: [
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-surprise-children-Vfi4oyNxKzenhxFZ6GP8HF.webp",
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-surprise-children-Vfi4oyNxKzenhxFZ6GP8HF.webp",
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-surprise-children-Vfi4oyNxKzenhxFZ6GP8HF.webp"
+                ]
+            },
+            {
+                id: 6,
+                name: "Ovo de Chocolate Amargo",
+                description: "Chocolate 70% cacau com castanhas",
+                price: 48.00,
+                images: [
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-dark-chocolate-kEbQzj28nt5zZGJQpSTghM.webp",
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-dark-angle1-EBvRa2TuUgbQWnDL6RPDpu.webp",
+                    "https://d2xsxph8kpxj0f.cloudfront.net/310419663030317010/RbauEVGVN8pLEoZyov9Rmr/egg-dark-angle2-njDsGfF72jhGSAhkjutors.webp"
+                ]
+            }
+        ];
+
+        let cart = [];
+        let currentImageIndex = {};
+        let dragStart = {};
+
+        // Renderizar produtos
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="carousel-container" onmousedown="handleDragStart(event, ${product.id})" onmouseup="handleDragEnd(event, ${product.id})">
+                        <img src="${product.images[currentImageIndex[product.id] || 0]}" alt="${product.name}" class="carousel-image">
+                        
+                        <button class="carousel-nav-btn prev" onclick="prevImage(${product.id})">❮</button>
+                        <button class="carousel-nav-btn next" onclick="nextImage(${product.id})">❯</button>
+                        
+                        <div class="carousel-indicators">
+                            ${product.images.map((_, index) => `
+                                <button class="indicator ${index === (currentImageIndex[product.id] || 0) ? 'active' : ''}" 
+                                        onclick="goToImage(${product.id}, ${index})"></button>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="product-content">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-description">${product.description}</div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <div class="price-label">A partir de</div>
+                                <div class="price-value">R$ ${product.price.toFixed(2)}</div>
+                            </div>
+                            <button class="btn-add" onclick="addToCart(${product.id})">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Navegação de imagens
+        function prevImage(productId) {
+            const product = products.find(p => p.id === productId);
+            const current = currentImageIndex[productId] || 0;
+            currentImageIndex[productId] = current === 0 ? product.images.length - 1 : current - 1;
+            renderProducts();
+        }
+
+        function nextImage(productId) {
+            const product = products.find(p => p.id === productId);
+            const current = currentImageIndex[productId] || 0;
+            currentImageIndex[productId] = (current + 1) % product.images.length;
+            renderProducts();
+        }
+
+        function goToImage(productId, index) {
+            currentImageIndex[productId] = index;
+            renderProducts();
+        }
+
+        // Drag para navegar
+        function handleDragStart(e, productId) {
+            dragStart[productId] = e.clientX;
+        }
+
+        function handleDragEnd(e, productId) {
+            if (!dragStart[productId]) return;
+            const distance = e.clientX - dragStart[productId];
+            if (distance > 50) prevImage(productId);
+            else if (distance < -50) nextImage(productId);
+            dragStart[productId] = 0;
+        }
+
+        // Carrinho
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            
+            updateCart();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        function updateQuantity(productId, quantity) {
+            if (quantity <= 0) {
+                removeFromCart(productId);
+            } else {
+                const item = cart.find(item => item.id === productId);
+                if (item) item.quantity = quantity;
+                updateCart();
+            }
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCart();
+        }
+
+        function updateCart() {
+            updateCartDisplay('Desktop');
+            updateCartDisplay('Modal');
+            updateBadge();
+        }
+
+        function updateCartDisplay(type) {
+            if (type === 'Desktop') return; // Ignorar desktop
+            const itemsContainer = document.getElementById(`cartItems${type}`);
+            const totalContainer = document.getElementById(`cartTotal${type}`);
+            const totalValue = document.getElementById(`cartTotalValue${type}`)
+            
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = '<div class="cart-empty">Seu carrinho está vazio 🛒</div>';
+                totalContainer.style.display = 'none';
+            } else {
+                itemsContainer.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-header">
+                            <div class="cart-item-name">${item.name}</div>
+                            <button class="btn-remove" onclick="removeFromCart(${item.id})">🗑️</button>
+                        </div>
+                        <div class="cart-item-footer">
+                            <div class="cart-item-price">R$ ${item.price.toFixed(2)}</div>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">−</button>
+                                <div class="qty-display">${item.quantity}</div>
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                totalValue.textContent = `R$ ${total.toFixed(2)}`;
+                totalContainer.style.display = 'block';
+            }
+        }
+
+        function updateBadge() {
+            const badge = document.getElementById('cartBadge');
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (count > 0) {
+                badge.textContent = count;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        function toggleFloatingCart() {
+            const modal = document.getElementById('floatingCartModal');
+            modal.style.display = modal.style.display === 'none' ? 'flex' : 'none';
+        }
+
+        function sendToWhatsApp() {
+            if (cart.length === 0) {
+                alert('Por favor, adicione ovos ao carrinho antes de enviar!');
+                return;
+            }
+
+            let message = "🐣 *Olá! Gostaria de encomendar os seguintes ovos de Páscoa:*\n\n";
+            cart.forEach(item => {
+                message += `• ${item.name} (${item.quantity}x) - R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `\n*Total: R$ ${total.toFixed(2)}*\n\n`;
+            message += "Por favor, confirme a disponibilidade e o prazo de entrega. Obrigado! 🎉";
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Inicializar
+        renderProducts();
+    </script>
+</body>
+</html>
