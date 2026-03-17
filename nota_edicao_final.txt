@@ -1,0 +1,8 @@
+Status da edição final do projeto
+
+1. O projeto extraído contém index.html, imgs/ e imgs_opt/.
+2. O produto Oreo existe no array products, mas está usando imagens de Raffaello por engano.
+3. O número atual de WhatsApp identificado no HTML é 5531986128487.
+4. O botão flutuante de envio usa a função sendToWhatsApp().
+5. Próximos passos: inserir botão no topo com mensagem pré-preenchida de ovo personalizado e substituir as imagens do produto Oreo.
+6. Não foram encontrados no ambiente arquivos locais previamente gerados com nome Oreo; será necessário criar/reaproveitar ativos visuais disponíveis ou solicitar os arquivos exatos ao usuário se ele quiser usar especificamente os anteriores.
