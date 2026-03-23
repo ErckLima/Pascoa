@@ -134,6 +134,78 @@
             transform: translateY(-8px);
         }
 
+        /* Card Monte seu ovo */
+        .monte-seu-ovo-card {
+            background: linear-gradient(135deg, #fef3c7, #fed7aa);
+            border: 3px solid #ca8a04;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            grid-column: 1 / -1;
+        }
+
+        .monte-seu-ovo-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: #b45309;
+            transform: translateY(-8px);
+        }
+
+        .monte-seu-ovo-content {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .monte-seu-ovo-text h3 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #78350f;
+            margin-bottom: 0.5rem;
+        }
+
+        .monte-seu-ovo-text p {
+            font-size: 1rem;
+            color: #b45309;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .monte-seu-ovo-button {
+            background: linear-gradient(to right, #b45309, #ca8a04);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 900;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .monte-seu-ovo-button:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .monte-seu-ovo-image {
+            text-align: center;
+            font-size: 6rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
         /* Carrossel de Imagens */
         .carousel-container {
             position: relative;
@@ -273,6 +345,201 @@
         .btn-add:hover {
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
             transform: scale(1.05);
+        }
+
+        /* Modal Popup */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content-box {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 3px solid #fcd34d;
+        }
+
+        .modal-header-box {
+            background: linear-gradient(to right, #b45309, #ca8a04);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #fcd34d;
+        }
+
+        .modal-header-box h2 {
+            font-size: 1.75rem;
+            font-weight: 900;
+            margin: 0;
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            font-weight: 900;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .option-group {
+            margin-bottom: 2rem;
+        }
+
+        .option-group-title {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #78350f;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fcd34d;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border: 2px solid #fef3c7;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-item:hover {
+            background: #fef3c7;
+            border-color: #fcd34d;
+        }
+
+        .option-item.selected {
+            background: #fcd34d;
+            border-color: #ca8a04;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex: 1;
+            font-weight: 600;
+            color: #78350f;
+        }
+
+        .option-price {
+            font-weight: 900;
+            color: #b45309;
+            font-size: 1.1rem;
+        }
+
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ca8a04;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .option-item.selected .radio-custom {
+            background: #ca8a04;
+            border-color: #78350f;
+        }
+
+        .radio-custom::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .option-item.selected .radio-custom::after {
+            opacity: 1;
+        }
+
+        .modal-footer-box {
+            padding: 2rem;
+            border-top: 2px solid #fcd34d;
+            background: linear-gradient(to bottom, white, #fef3c7);
+        }
+
+        .price-summary {
+            background: linear-gradient(to right, #fef3c7, #fed7aa);
+            border: 2px solid #fcd34d;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .price-summary-label {
+            font-size: 0.9rem;
+            color: #b45309;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .price-summary-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #78350f;
+        }
+
+        .btn-add-to-cart {
+            width: 100%;
+            background: linear-gradient(to right, #b45309, #ca8a04);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 900;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-add-to-cart:hover:not(:disabled) {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+            transform: scale(1.02);
+        }
+
+        .btn-add-to-cart:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         /* Carrinho Desktop */
@@ -612,10 +879,18 @@
                 grid-template-columns: 1fr;
             }
 
+            .monte-seu-ovo-content {
+                grid-template-columns: 1fr;
+            }
+
             .floating-cart-modal {
                 width: calc(100% - 2rem);
                 right: 1rem;
                 left: 1rem;
+            }
+
+            .modal-content-box {
+                width: 95%;
             }
         }
     </style>
@@ -627,8 +902,6 @@
             <div>
                 <h1>🐣 Ovos de Páscoa</h1>
                 <p>Catálogo premium de chocolate artesanal</p>
-                <a class="btn-custom-egg" href="javascript:void(0)" onclick="sendCustomEggToWhatsApp()">Personalizar ovo</a>
-                <p>Crie uma combinação exclusiva</p>
             </div>
             <div class="header-emoji">🍫</div>
         </div>
@@ -641,10 +914,21 @@
             <div>
                 <h2 class="section-title">Nossos Ovos Premium</h2>
                 <div class="title-underline"></div>
+                
+                <!-- Monte seu ovo Card -->
+                <div class="monte-seu-ovo-card">
+                    <div class="monte-seu-ovo-content">
+                        <div class="monte-seu-ovo-text">
+                            <h3>Monte seu Ovo Personalizado</h3>
+                            <p>Escolha sua casca, recheio e bombom favorito. Crie uma combinação exclusiva e única para você!</p>
+                            <button class="monte-seu-ovo-button" onclick="openMonteModal()">🎨 Personalizar Agora</button>
+                        </div>
+                        <div class="monte-seu-ovo-image">🐣</div>
+                    </div>
+                </div>
+
                 <div class="products-grid" id="productsGrid"></div>
             </div>
-
-
         </div>
     </div>
 
@@ -653,6 +937,52 @@
         <h3>🐣 Catálogo de Ovos de Páscoa 🍫</h3>
         <p>Feito com ❤️ para a sua Páscoa especial | Chocolate Premium Artesanal</p>
     </footer>
+
+    <!-- Modal Monte seu ovo -->
+    <div class="modal-overlay" id="monteModal">
+        <div class="modal-content-box">
+            <div class="modal-header-box">
+                <h2>🎨 Monte seu Ovo</h2>
+                <button class="modal-close-btn" onclick="closeMonteModal()">✕</button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Tamanho -->
+                <div class="option-group">
+                    <div class="option-group-title">📏 Tamanho</div>
+                    <div id="sizeOptions"></div>
+                </div>
+
+                <!-- Casca -->
+                <div class="option-group">
+                    <div class="option-group-title">🥚 Casca</div>
+                    <div id="shellOptions"></div>
+                </div>
+
+                <!-- Recheio -->
+                <div class="option-group">
+                    <div class="option-group-title">🍫 Recheio</div>
+                    <div id="fillingOptions"></div>
+                </div>
+
+                <!-- Bombom -->
+                <div class="option-group">
+                    <div class="option-group-title">🎁 Bombom</div>
+                    <div id="bonbomOptions"></div>
+                </div>
+            </div>
+
+            <div class="modal-footer-box">
+                <div class="price-summary">
+                    <div class="price-summary-label">Preço Total:</div>
+                    <div class="price-summary-value" id="totalPrice">R$ 0,00</div>
+                </div>
+                <button class="btn-add-to-cart" id="addToCartBtn" onclick="addMonteToCart()" disabled>
+                    🛒 Adicionar ao Carrinho
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Carrinho Flutuante -->
     <button class="floating-cart-btn" id="floatingCartBtn" onclick="toggleFloatingCart()">
@@ -691,87 +1021,250 @@
         // Exemplo: 5585987654321 para Fortaleza
         const WHATSAPP_NUMBER = "5531986128487"; // ALTERE AQUI!
 
-        // Produtos
+        // Estrutura de preços para Monte seu ovo
+        const monteOvoConfig = {
+            sizes: {
+                "250g": 45.00,
+                "350g": 55.00
+            },
+            shells: {
+                "Meio amargo": 5.00,
+                "Ao leite": 5.00,
+                "Branco": 5.00
+            },
+            fillings: {
+                "Ferrero": 8.00,
+                "Brigadeiro": 6.00,
+                "Beijinho": 5.00,
+                "Ninho com Nutella": 7.00,
+                "Oreo": 8.00,
+                "Prestígio": 7.00,
+                "Maracujá": 6.00,
+                "Bicho de pé (morango)": 6.00
+            },
+            bonboms: {
+                "Ferrero": 5.00,
+                "Brigadeiro": 4.00,
+                "Ninho com Nutella": 4.00,
+                "Prestígio": 4.00,
+                "Oreo": 5.00,
+                "Raffaello": 6.00,
+                "Kinder Bueno": 5.00
+            }
+        };
+
+        // Estado do Monte seu ovo
+        let monteSelection = {
+            size: null,
+            shell: null,
+            filling: null,
+            bonbom: null
+        };
+
+        // Produtos normais
         const products = [
-                            {
-                                id: 1,
-                                name: "Ovo de Chocolate Raffaello - 350g",
-                                description: "Elaborado para proporcionar uma experiência sofisticada, com recheio cremoso de coco e um toque especial de granulado de castanhas, que acrescenta textura e sabor. Acompanha um refinado bombom Raffaello.",
-                                price: 70.00,
-                                images: [
-                                    "./imgs_opt/RaffaelloAberto.webp",
-                                    "./imgs_opt/RaffaelloInteiro.webp",
-                                    "./imgs_opt/RaffaelloIneiroTematico.webp"
-                                ]
-                            },
-                            {
-                                id: 2,
-                                name: "Ovo de Chocolate Ferrero Rocher - 350g",
-                                description: "Casca fina e sabor marcante, recheado com um delicioso creme de Nutella que traz cremosidade e intensidade na medida certa. Para completar a experiência, acompanha um irresistível bombom Ferrero Rocher.",
-                                price: 65.00,
-                                images: [
-                                    "./imgs_opt/ferreiroAberto.webp",
-                                    "./imgs_opt/ferreiroInteiroTematico.webp",
-                                    "./imgs_opt/ferreroInteiro.webp"
-                                ]
-                            },
-                            {
-                                id: 3,
-                                name: "Ovo Recheado de Oreo - 350g",
-                                description: "Recheio cremoso inspirado no sabor inconfundível do Oreo, combinando a doçura do chocolate com o toque crocante do biscoito. Uma opção irresistível para quem ama sobremesas marcantes e cheias de personalidade.",
-                                price: 60.00,
-                                images: [
-                                    "./imgs_opt/ovo_oreo_refeito_posicao_ferrero.webp",
-                                    "./imgs_opt/ovo_oreo_metade_no_prato_refeito.webp",
-                                    "./imgs_opt/ovo_oreo_no_prato_refeito.webp"
-                                ]
-                            },
-
-
-// Aqui são os 250G
-
-
-                            {
-                                id: 4,
-                                name: "Ovo de Chocolate Raffaello - 250g",
-                                description: "Chocolate premium, elaborado para proporcionar uma experiência sofisticada, com recheio cremoso de coco e um toque especial de granulado de castanhas, que acrescenta textura e sabor. Acompanha um refinado bombom Raffaello.",
-                                price: 60.00,
-                                images: [
-                                    "./imgs_opt/RaffaelloAberto.webp",
-                                    "./imgs_opt/RaffaelloInteiro.webp",
-                                    "./imgs_opt/RaffaelloIneiroTematico.webp"
-                                ]
-                            },
-                            {
-                                id: 5,
-                                name: "Ovo de Chocolate Ferrero - 250g",
-                                description: "Chocolate premium, com casca fina e sabor marcante, recheado com um delicioso creme de Nutella que traz cremosidade e intensidade na medida certa. Para completar a experiência, acompanha um irresistível bombom Ferrero Rocher.",
-                                price: 55.00,
-                                images: [
-                                    "./imgs_opt/ferreiroAberto.webp",
-                                    "./imgs_opt/ferreiroInteiroTematico.webp",
-                                    "./imgs_opt/ferreroInteiro.webp"
-                                ]
-                            },
-                            {
-                                id: 6,
-                                name: "Ovo Recheado de Oreo - 250g",
-                                description: "Chocolate premium, com um recheio cremoso inspirado no sabor inconfundível do Oreo, combinando a doçura do chocolate com o toque crocante do biscoito. Uma opção irresistível para quem ama sobremesas marcantes e cheias de personalidade.",
-                                price: 50.00,
-                                images: [
-                                    "./imgs_opt/ovo_oreo_refeito_posicao_ferrero.webp",
-                                    "./imgs_opt/ovo_oreo_metade_no_prato_refeito.webp",
-                                    "./imgs_opt/ovo_oreo_no_prato_refeito.webp"
-                                ]
-                            }
-                        ];
-
+            {
+                id: 1,
+                name: "Ovo de Chocolate Raffaello - 350g",
+                description: "Elaborado para proporcionar uma experiência sofisticada, com recheio cremoso de coco e um toque especial de granulado de castanhas, que acrescenta textura e sabor. Acompanha um refinado bombom Raffaello.",
+                price: 70.00,
+                images: [
+                    "./imgs_opt/RaffaelloAberto.webp",
+                    "./imgs_opt/RaffaelloInteiro.webp",
+                    "./imgs_opt/RaffaelloIneiroTematico.webp"
+                ]
+            },
+            {
+                id: 2,
+                name: "Ovo de Chocolate Ferrero Rocher - 350g",
+                description: "Casca fina e sabor marcante, recheado com um delicioso creme de Nutella que traz cremosidade e intensidade na medida certa. Para completar a experiência, acompanha um irresistível bombom Ferrero Rocher.",
+                price: 65.00,
+                images: [
+                    "./imgs_opt/ferreiroAberto.webp",
+                    "./imgs_opt/ferreiroInteiroTematico.webp",
+                    "./imgs_opt/ferreroInteiro.webp"
+                ]
+            },
+            {
+                id: 3,
+                name: "Ovo Recheado de Oreo - 350g",
+                description: "Recheio cremoso inspirado no sabor inconfundível do Oreo, combinando a doçura do chocolate com o toque crocante do biscoito. Uma opção irresistível para quem ama sobremesas marcantes e cheias de personalidade.",
+                price: 60.00,
+                images: [
+                    "./imgs_opt/ovo_oreo_refeito_posicao_ferrero.webp",
+                    "./imgs_opt/ovo_oreo_metade_no_prato_refeito.webp",
+                    "./imgs_opt/ovo_oreo_no_prato_refeito.webp"
+                ]
+            },
+            {
+                id: 4,
+                name: "Ovo de Chocolate Raffaello - 250g",
+                description: "Chocolate premium, elaborado para proporcionar uma experiência sofisticada, com recheio cremoso de coco e um toque especial de granulado de castanhas, que acrescenta textura e sabor. Acompanha um refinado bombom Raffaello.",
+                price: 60.00,
+                images: [
+                    "./imgs_opt/RaffaelloAberto.webp",
+                    "./imgs_opt/RaffaelloInteiro.webp",
+                    "./imgs_opt/RaffaelloIneiroTematico.webp"
+                ]
+            },
+            {
+                id: 5,
+                name: "Ovo de Chocolate Ferrero - 250g",
+                description: "Chocolate premium, com casca fina e sabor marcante, recheado com um delicioso creme de Nutella que traz cremosidade e intensidade na medida certa. Para completar a experiência, acompanha um irresistível bombom Ferrero Rocher.",
+                price: 55.00,
+                images: [
+                    "./imgs_opt/ferreiroAberto.webp",
+                    "./imgs_opt/ferreiroInteiroTematico.webp",
+                    "./imgs_opt/ferreroInteiro.webp"
+                ]
+            },
+            {
+                id: 6,
+                name: "Ovo Recheado de Oreo - 250g",
+                description: "Chocolate premium, com um recheio cremoso inspirado no sabor inconfundível do Oreo, combinando a doçura do chocolate com o toque crocante do biscoito. Uma opção irresistível para quem ama sobremesas marcantes e cheias de personalidade.",
+                price: 50.00,
+                images: [
+                    "./imgs_opt/ovo_oreo_refeito_posicao_ferrero.webp",
+                    "./imgs_opt/ovo_oreo_metade_no_prato_refeito.webp",
+                    "./imgs_opt/ovo_oreo_no_prato_refeito.webp"
+                ]
+            }
+        ];
 
         let cart = [];
         let currentImageIndex = {};
         let dragStart = {};
 
-        // Renderizar produtos
+        // ===== MONTE SEU OVO FUNCTIONS =====
+        function openMonteModal() {
+            document.getElementById('monteModal').classList.add('active');
+            renderMonteOptions();
+        }
+
+        function closeMonteModal() {
+            document.getElementById('monteModal').classList.remove('active');
+            monteSelection = { size: null, shell: null, filling: null, bonbom: null };
+            updateMontePrice();
+        }
+
+        function renderMonteOptions() {
+            // Tamanhos
+            const sizeHtml = Object.entries(monteOvoConfig.sizes).map(([size, price]) => `
+                <div class="option-item ${monteSelection.size === size ? 'selected' : ''}" onclick="selectMonteOption('size', '${size}')">
+                    <div class="option-label">
+                        <div class="radio-custom"></div>
+                        ${size}
+                    </div>
+                    <div class="option-price">R$ ${price.toFixed(2)}</div>
+                </div>
+            `).join('');
+            document.getElementById('sizeOptions').innerHTML = sizeHtml;
+
+            // Cascas
+            const shellHtml = Object.entries(monteOvoConfig.shells).map(([shell, price]) => `
+                <div class="option-item ${monteSelection.shell === shell ? 'selected' : ''}" onclick="selectMonteOption('shell', '${shell}')">
+                    <div class="option-label">
+                        <div class="radio-custom"></div>
+                        ${shell}
+                    </div>
+                    <div class="option-price">R$ ${price.toFixed(2)}</div>
+                </div>
+            `).join('');
+            document.getElementById('shellOptions').innerHTML = shellHtml;
+
+            // Recheios
+            const fillingHtml = Object.entries(monteOvoConfig.fillings).map(([filling, price]) => `
+                <div class="option-item ${monteSelection.filling === filling ? 'selected' : ''}" onclick="selectMonteOption('filling', '${filling}')">
+                    <div class="option-label">
+                        <div class="radio-custom"></div>
+                        ${filling}
+                    </div>
+                    <div class="option-price">R$ ${price.toFixed(2)}</div>
+                </div>
+            `).join('');
+            document.getElementById('fillingOptions').innerHTML = fillingHtml;
+
+            // Bombons
+            const bonbomHtml = Object.entries(monteOvoConfig.bonboms).map(([bonbom, price]) => `
+                <div class="option-item ${monteSelection.bonbom === bonbom ? 'selected' : ''}" onclick="selectMonteOption('bonbom', '${bonbom}')">
+                    <div class="option-label">
+                        <div class="radio-custom"></div>
+                        ${bonbom}
+                    </div>
+                    <div class="option-price">R$ ${price.toFixed(2)}</div>
+                </div>
+            `).join('');
+            document.getElementById('bonbomOptions').innerHTML = bonbomHtml;
+        }
+
+        function selectMonteOption(type, value) {
+            monteSelection[type] = value;
+            renderMonteOptions();
+            updateMontePrice();
+        }
+
+        function updateMontePrice() {
+            let total = 0;
+            
+            if (monteSelection.size) {
+                total += monteOvoConfig.sizes[monteSelection.size];
+            }
+            if (monteSelection.shell) {
+                total += monteOvoConfig.shells[monteSelection.shell];
+            }
+            if (monteSelection.filling) {
+                total += monteOvoConfig.fillings[monteSelection.filling];
+            }
+            if (monteSelection.bonbom) {
+                total += monteOvoConfig.bonboms[monteSelection.bonbom];
+            }
+
+            document.getElementById('totalPrice').textContent = `R$ ${total.toFixed(2)}`;
+            
+            // Habilitar botão apenas se todas as opções foram selecionadas
+            const allSelected = monteSelection.size && monteSelection.shell && monteSelection.filling && monteSelection.bonbom;
+            document.getElementById('addToCartBtn').disabled = !allSelected;
+        }
+
+        function addMonteToCart() {
+            if (!monteSelection.size || !monteSelection.shell || !monteSelection.filling || !monteSelection.bonbom) {
+                alert('Por favor, selecione todas as opções!');
+                return;
+            }
+
+            const price = monteOvoConfig.sizes[monteSelection.size] + 
+                         monteOvoConfig.shells[monteSelection.shell] + 
+                         monteOvoConfig.fillings[monteSelection.filling] + 
+                         monteOvoConfig.bonboms[monteSelection.bonbom];
+
+            const name = `Ovo Personalizado (${monteSelection.size}) - ${monteSelection.shell} | ${monteSelection.filling} | ${monteSelection.bonbom}`;
+
+            const item = {
+                id: 'monte-' + Date.now(),
+                name: name,
+                price: price,
+                quantity: 1,
+                isCustom: true,
+                details: {
+                    size: monteSelection.size,
+                    shell: monteSelection.shell,
+                    filling: monteSelection.filling,
+                    bonbom: monteSelection.bonbom
+                }
+            };
+
+            const existingItem = cart.find(c => c.id === item.id);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push(item);
+            }
+
+            updateCart();
+            closeMonteModal();
+        }
+
+        // ===== PRODUTOS NORMAIS FUNCTIONS =====
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = products.map(product => `
@@ -841,27 +1334,27 @@
         // Carrinho
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
-            const existingItem = cart.find(item => item.id === productId);
+            const existingItem = cart.find(item => item.id === productId && !item.isCustom);
             
             if (existingItem) {
                 existingItem.quantity++;
             } else {
-                cart.push({ ...product, quantity: 1 });
+                cart.push({ ...product, quantity: 1, isCustom: false });
             }
             
             updateCart();
         }
 
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id !== itemId);
             updateCart();
         }
 
-        function updateQuantity(productId, quantity) {
+        function updateQuantity(itemId, quantity) {
             if (quantity <= 0) {
-                removeFromCart(productId);
+                removeFromCart(itemId);
             } else {
-                const item = cart.find(item => item.id === productId);
+                const item = cart.find(item => item.id === itemId);
                 if (item) item.quantity = quantity;
                 updateCart();
             }
@@ -873,13 +1366,11 @@
         }
 
         function updateCart() {
-            updateCartDisplay('Desktop');
             updateCartDisplay('Modal');
             updateBadge();
         }
 
         function updateCartDisplay(type) {
-            if (type === 'Desktop') return; // Ignorar desktop
             const itemsContainer = document.getElementById(`cartItems${type}`);
             const totalContainer = document.getElementById(`cartTotal${type}`);
             const totalValue = document.getElementById(`cartTotalValue${type}`)
@@ -892,14 +1383,14 @@
                     <div class="cart-item">
                         <div class="cart-item-header">
                             <div class="cart-item-name">${item.name}</div>
-                            <button class="btn-remove" onclick="removeFromCart(${item.id})">🗑️</button>
+                            <button class="btn-remove" onclick="removeFromCart('${item.id}')">🗑️</button>
                         </div>
                         <div class="cart-item-footer">
                             <div class="cart-item-price">R$ ${item.price.toFixed(2)}</div>
                             <div class="quantity-control">
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">−</button>
+                                <button class="qty-btn" onclick="updateQuantity('${item.id}', ${item.quantity - 1})">−</button>
                                 <div class="qty-display">${item.quantity}</div>
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                                <button class="qty-btn" onclick="updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
                             </div>
                         </div>
                     </div>
@@ -925,12 +1416,6 @@
         function toggleFloatingCart() {
             const modal = document.getElementById('floatingCartModal');
             modal.style.display = modal.style.display === 'none' ? 'flex' : 'none';
-        }
-
-        function sendCustomEggToWhatsApp() {
-            const customMessage = "Olá, gostaria de fazer um Ovo personalizado";
-            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(customMessage)}`;
-            window.open(whatsappUrl, '_blank');
         }
 
         function sendToWhatsApp() {
